@@ -1,19 +1,12 @@
 #!/usr/bin/python3
-
-import PyPDF2 as ppdf
+#-*- coding:utf8 -*-
+import PyPDF2 as pdf
 
 def f0(o,f):
-    f=f+".pdf"
-    ff=open(f,"rb")
-    pp=ppdf.PdfFileReader(ff)
-    i=pp.numPages
-    oo=open(o,"w")
-    for x in range(0,i):
-        xd=pp.getPage(x)
-        oo.write(xd.extractText())
-    ff.close()
-    oo.close()
-    print("Writted")
+	p=pdf.PdfReader(f+".pdf")
+	oo=open(o,"w")
+	for i in p.pages:
+		oo.write(i.extract_text())
 
 f=input("Introduce the pdf file name to read (without extension): ")
 o=input("Introduce the new name of file to write: ")
